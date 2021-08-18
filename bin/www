@@ -1,0 +1,12 @@
+const app = require('../');
+const config = require('config').get('config');
+
+app.set('port', process.env.PORT || config.port);
+const server = app.listen(app.get('port'), () => {
+  const host = server.address().address;
+  const port = server.address().port;
+
+  console.log('Server running on: http://%s:%s', host, port);
+});
+
+module.exports = server;
